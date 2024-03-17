@@ -25,7 +25,7 @@ domains: # create domains
       files: 10 # optional
     required: false # optionally, require path matches to assign group
     groups: # assign group(s) to domain
-      devs
+      - devs
 count: 1 # optional, add amount of assignees
 weights: # optional, weights can be assigned globally
   additions: 1 # optional
@@ -42,17 +42,11 @@ on:
     types: [opened, ready_for_review, reopened]
 
 jobs:
-  test:
+  pick:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
     - uses: cameronaziz/pick-an-assignee@v1
       with:
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
 ```
-
-## FAQ
-**Why on pull_request_target?**
-
-By running this action on `pull_request_target` we enable this action to be performed on PRs opened by users with 
-readonly access to the repo, for example those by Dependabot.

@@ -12,8 +12,7 @@ async function run(): Promise<void> {
       throw new Error('missing GITHUB_REPOSITORY')
     }
 
-    //comes from {{secrets.GITHUB_TOKEN}}
-    const token = core.getInput('repo-token', { required: true })
+    const token = core.getInput('token', { required: true })
     const config = getConfig()
 
     await runLottery({
