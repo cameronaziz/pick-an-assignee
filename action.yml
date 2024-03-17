@@ -1,0 +1,16 @@
+name: 'Pick an Assignee'
+description: 'Automatically assign assignees to Pull Requests'
+author: 'Cameron Aziz'
+branding:
+  icon: 'eye'
+  color: 'blue'
+inputs:
+  repo-token:
+    description: "Github token secret"
+    required: true
+  config:
+    description: 'Path to config file'
+    default: '.github/pick-an-assignee.yml'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
