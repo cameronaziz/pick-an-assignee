@@ -1,6 +1,6 @@
 # Pick an Assignee (Github Action)
 
-Add your configuration on `.github/reviewer-lottery.yml`:
+Add your configuration on `.github/pick-an-assignee.yml`:
 ```yaml
 groups: # create groups of users
   - name: devs # name of the group
@@ -16,8 +16,8 @@ groups: # create groups of users
       - someone_else
 domains: # create domains
   - paths:
-      - /some-regex-path
-      - /some-other/*/path
+      - "/some-path"
+      - ""/some-other-path/*/with-regex"
     weights: # optional, weight importance
       additions: 1 # optional
       deletions: 1 # optional
@@ -36,7 +36,7 @@ weights: # optional, weights can be assigned globally
 
 Ideal workflow configuration is:
 ```yaml
-name: "Reviewer lottery"
+name: "Pick an Assignee"
 on:
   pull_request_target:
     types: [opened, ready_for_review, reopened]
@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - uses: cameronaziz/reviewer-lottery@v3
+    - uses: cameronaziz/pick-an-assignee@v1
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
